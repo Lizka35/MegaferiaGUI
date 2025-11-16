@@ -28,5 +28,10 @@ public class PrintedBook extends Book {
     public int getCopies() {
         return copies;
     }
+
+    @Override
+    public String getIsbn() {
+        return super.getIsbn(); 
+    }
     
 }

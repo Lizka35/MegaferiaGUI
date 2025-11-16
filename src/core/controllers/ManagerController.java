@@ -3,14 +3,11 @@ package core.controllers;
 
 import core.controllers.utils.Response;
 import core.controllers.utils.Status;
-import core.models.Author;
 import core.models.Manager;
-import core.models.Narrator;
-import core.models.Person;
-import core.models.storage.StoragePerson;
+import core.models.storage.StorageManager;
 
-public class PersonController {
-    public static Response createPerson(String id, String firstname, String lastname){
+public class ManagerController {
+    public static Response createManager(String id, String firstname, String lastname){
         try {
             long idLong;
             try {
@@ -36,11 +33,11 @@ public class PersonController {
                 return new Response("Lastname must be not empty", Status.BAD_REQUEST);
             }
             
-            StoragePerson storagePerson = StoragePerson.getInstance();
-            if(!storagePerson.addPerson(new Person(idLong, firstname, lastname) )){
-                return new Response("Person with that id already exits", Status.BAD_REQUEST);
+            StorageManager storageManager = StorageManager.getInstance();
+            if(!storageManager.addManager(new Manager(idLong, firstname, lastname) )){
+                return new Response("Manager with that id already exits", Status.BAD_REQUEST);
             }
-            return new Response("Person was created succesfully", Status.CREATED);
+            return new Response("Manager was created succesfully", Status.CREATED);
             
         } catch (Exception e) {
             return new Response("Unexpected error", Status.INTERNAL_SERVER_ERROR);
